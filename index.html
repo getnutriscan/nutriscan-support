@@ -1,65 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NutriScan Support</title>
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      max-width: 760px;
-      margin: 60px auto;
-      padding: 0 24px;
-      color: #1a1a1a;
-      line-height: 1.7;
-      text-align: center;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f8fdf4; color: #1a1a1a; }
+ 
+    header {
+      background: #0f1a14;
+      padding: 24px 40px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
-    h1 { font-size: 2rem; margin-bottom: 8px; }
-    p { font-size: 1rem; color: #333; }
-    .email {
-      display: inline-block;
-      margin-top: 24px;
-      padding: 14px 32px;
-      background: #00b050;
-      color: white;
+    .logo-icon {
+      width: 44px; height: 44px;
+      background: #16a34a;
       border-radius: 10px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
     }
-    .email:hover { background: #009040; }
-    .faq { text-align: left; margin-top: 60px; }
-    .faq h2 { font-size: 1.3rem; margin-bottom: 4px; }
-    .faq p { color: #555; }
-    .divider { border: none; border-top: 1px solid #eee; margin: 24px 0; }
+    .logo-icon svg { width: 28px; height: 28px; }
+    header h1 { color: #fff; font-size: 22px; font-weight: 700; }
+    header span { color: #4ade80; font-size: 13px; font-weight: 400; margin-left: 4px; }
+ 
+    .hero {
+      background: linear-gradient(135deg, #14532d 0%, #166534 100%);
+      color: white;
+      text-align: center;
+      padding: 60px 24px;
+    }
+    .hero h2 { font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+    .hero p { font-size: 16px; opacity: 0.85; max-width: 500px; margin: 0 auto; }
+ 
+    .container { max-width: 800px; margin: 0 auto; padding: 48px 24px; }
+ 
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 48px; }
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 28px 24px;
+      border: 1px solid #e2f0e8;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .card-icon { font-size: 28px; margin-bottom: 12px; }
+    .card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; color: #14532d; }
+    .card p { font-size: 14px; color: #555; line-height: 1.6; }
+ 
+    .faq { margin-bottom: 48px; }
+    .faq h2 { font-size: 22px; font-weight: 700; margin-bottom: 24px; color: #14532d; }
+    .faq-item { background: white; border-radius: 12px; padding: 20px 24px; margin-bottom: 12px; border: 1px solid #e2f0e8; }
+    .faq-item h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; color: #1a1a1a; }
+    .faq-item p { font-size: 14px; color: #555; line-height: 1.6; }
+ 
+    .contact {
+      background: #0f1a14;
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      color: white;
+    }
+    .contact h2 { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+    .contact p { font-size: 15px; opacity: 0.75; margin-bottom: 24px; }
+    .contact a {
+      display: inline-block;
+      background: #16a34a;
+      color: white;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .contact a:hover { background: #15803d; }
+    .email-text { margin-top: 16px; font-size: 13px; opacity: 0.6; }
+ 
+    footer { text-align: center; padding: 24px; font-size: 13px; color: #888; }
   </style>
 </head>
 <body>
-
-  <h1>🥗 NutriScan Support</h1>
-  <p>Have a question or running into an issue? We're here to help.</p>
-  <a class="email" href="mailto:nutriscanapp@gmail.com">Contact Us</a>
-
-  <div class="faq">
-    <hr class="divider"/>
-    <h2>Is NutriScan free?</h2>
-    <p>Yes — NutriScan is completely free with no subscriptions or paywalls.</p>
-
-    <hr class="divider"/>
-    <h2>How does food scanning work?</h2>
-    <p>Point your camera at any food item and NutriScan's AI will identify it and return detailed nutrition facts powered by the USDA Food Data Central database.</p>
-
-    <hr class="divider"/>
-    <h2>Is my data private?</h2>
-    <p>Yes. Your personal profile and preferences are stored locally on your device only and never transmitted to our servers. See our <a href="https://nuv2453-ah.github.io/nutriscan-privacy">Privacy Policy</a> for full details.</p>
-
-    <hr class="divider"/>
-    <h2>How do I find local food banks?</h2>
-    <p>Set up your profile with your location and dietary preferences, and NutriScan will surface nearby food banks and free healthy food resources automatically.</p>
-
-    <hr class="divider"/>
-    <p style="color:#aaa; font-size:0.85rem; margin-top:40px;">© 2026 Nuv Ahuja, Neil Sachdev, Aarav Chada</p>
+ 
+<header>
+  <div class="logo-icon">
+    <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14 3 C18 5 22 9 22 14 C22 18 19 21 14 23 C9 21 6 18 6 14 C6 9 10 5 14 3 Z" fill="#4ade80"/>
+      <rect x="5" y="13" width="18" height="2" rx="1" fill="white" opacity="0.9"/>
+      <circle cx="14" cy="14" r="2.5" fill="white"/>
+      <circle cx="14" cy="14" r="1.2" fill="#0f1a14"/>
+    </svg>
   </div>
-
+  <h1>NutriScan <span>Food &amp; Nutrition</span></h1>
+</header>
+ 
+<div class="hero">
+  <h2>How can we help you?</h2>
+  <p>Get support for NutriScan — the AI-powered food scanner built by students at Purdue University.</p>
+</div>
+ 
+<div class="container">
+ 
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">📸</div>
+      <h3>Food Scanning</h3>
+      <p>Point your camera at any meal or ingredient for instant AI-powered nutrition analysis.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏷️</div>
+      <h3>Label Reading</h3>
+      <p>Scan any grocery item or supplement nutrition label to parse values instantly.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🥗</div>
+      <h3>Nutrition Tracking</h3>
+      <p>Track your daily calories, protein, carbs, and dietary fiber against your personal goals.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏦</div>
+      <h3>Food Bank Finder</h3>
+      <p>Find local food banks and free nutrition resources in your area — because healthy eating should be for everyone.</p>
+    </div>
+  </div>
+ 
+  <div class="faq">
+    <h2>Frequently Asked Questions</h2>
+ 
+    <div class="faq-item">
+      <h4>How do I scan a meal?</h4>
+      <p>Tap the Snaps tab at the bottom of the app, then tap the camera icon. Point your camera at your meal and NutriScan's AI will recognize every ingredient and compute portions in seconds.</p>
+    </div>
+    <div class="faq-item">
+      <h4>How do I scan a nutrition label?</h4>
+      <p>Tap the Label Scan tab at the bottom of the app. Then tap "Take a Photo or Select Image" and point your camera at any nutrition facts label on a grocery or supplement item.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Is NutriScan free?</h4>
+      <p>Yes — NutriScan is completely free with no subscriptions or paywalls. It was built by students at Purdue University who believe nutrition technology should work for everyone.</p>
+    </div>
+    <div class="faq-item">
+      <h4>How do I update my nutrition goals?</h4>
+      <p>Tap "My Profile" in the top right corner of the home screen to update your dietary preferences, calorie targets, and macro goals.</p>
+    </div>
+    <div class="faq-item">
+      <h4>The app crashed or isn't working — what do I do?</h4>
+      <p>Try closing and reopening the app. If the issue persists, make sure your iOS is up to date, then contact us at the email below and we'll help you resolve it.</p>
+    </div>
+  </div>
+ 
+  <div class="contact">
+    <h2>Still need help?</h2>
+    <p>Our support team is happy to assist you with any questions or issues.</p>
+    <a href="mailto:nutriscan.supportpage@gmail.com">Email Support</a>
+    <div class="email-text">nutriscan.supportpage@gmail.com</div>
+  </div>
+ 
+</div>
+ 
+<footer>
+  &copy; 2026 NutriScan — Built at Purdue University &nbsp;·&nbsp; <a href="mailto:nutriscan.supportpage@gmail.com" style="color:#16a34a;">Contact Us</a>
+</footer>
+ 
 </body>
 </html>
