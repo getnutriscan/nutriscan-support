@@ -1,183 +1,251 @@
+
+Index · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NutriScan — Support</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Spline+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --ink: #14201a;
-    --muted: #5d6b63;
-    --accent: #16a34a;
-    --accent-soft: #e7f6ec;
-    --line: #e4e9e5;
-    --bg: #fbfcfb;
-    --card: #ffffff;
-    --dark: #0f1a14;
+    --green: #2f7a4f;
+    --red: #e0435c;
+    --ink: #1c1f1c;
+    --muted: #666b62;
+    --bg: #ffffff;
+    --border: #e7e9e5;
+    --red-bg: #fdeef1;
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  * { box-sizing: border-box; }
   body {
-    background: var(--bg); color: var(--ink);
-    font-family: "Spline Sans", system-ui, sans-serif;
-    line-height: 1.65; font-size: 16px;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
   }
-  a { color: var(--accent); text-decoration: none; }
-  header {
-    background: var(--dark); padding: 20px 28px;
-    display: flex; align-items: center; gap: 13px;
+  .wrap { max-width: 640px; margin: 0 auto; padding: 48px 24px 80px; }
+ 
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
   }
-  .logo {
-    width: 40px; height: 40px; border-radius: 11px;
-    background: linear-gradient(135deg, #16a34a, #4ade80);
+  .mark {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--green);
+    color: #fff;
     display: flex; align-items: center; justify-content: center;
-    color: #fff; font-family: "Fraunces", serif; font-weight: 600; font-size: 22px;
+    font-weight: 700;
+    font-size: 15px;
   }
-  header h1 { color: #fff; font-size: 18px; font-weight: 600; }
-  header h1 span { color: #6ee7a0; font-weight: 400; }
-  .hero {
-    background: linear-gradient(135deg, #14532d 0%, #166534 100%);
-    color: #fff; text-align: center; padding: 64px 24px 70px;
+  .brand span { font-weight: 600; font-size: 15px; }
+ 
+  h1 {
+    font-size: 30px;
+    line-height: 1.2;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
   }
-  .hero h2 {
-    font-family: "Fraunces", Georgia, serif; font-weight: 600;
-    font-size: 36px; line-height: 1.12; margin-bottom: 12px; letter-spacing: -0.01em;
+  p.sub {
+    color: var(--muted);
+    font-size: 16px;
+    margin: 0 0 24px;
   }
-  .hero p { font-size: 16px; opacity: 0.9; max-width: 520px; margin: 0 auto; }
-  .container { max-width: 800px; margin: 0 auto; padding: 52px 24px 80px; }
-  .cards {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 18px; margin-bottom: 56px;
+ 
+  .disclaimer {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    background: var(--red-bg);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 40px;
+    font-size: 13.5px;
+    color: #8a3242;
   }
-  .card {
-    background: var(--card); border: 1px solid var(--line);
-    border-radius: 14px; padding: 24px 22px;
+  .disclaimer .icon { flex-shrink: 0; font-size: 16px; line-height: 1.4; }
+ 
+  h2 {
+    font-size: 18px;
+    margin: 0 0 4px;
   }
-  .card .ico { font-size: 24px; margin-bottom: 10px; }
-  .card h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; color: #14532d; }
-  .card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
-  .sec-title {
-    font-family: "Fraunces", Georgia, serif; font-weight: 600;
-    font-size: 26px; margin-bottom: 22px; color: #14532d; letter-spacing: -0.01em;
+ 
+  .faq {
+    margin-top: 8px;
+    border-top: 1px solid var(--border);
   }
-  .faq-item {
-    background: var(--card); border: 1px solid var(--line);
-    border-radius: 12px; padding: 18px 22px; margin-bottom: 11px;
+  details {
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
   }
-  .faq-item h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
-  .faq-item p { font-size: 14px; color: var(--muted); line-height: 1.6; }
-  .faq-item a { border-bottom: 1px solid var(--accent-soft); }
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15.5px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: "+";
+    color: var(--green);
+    font-size: 20px;
+    font-weight: 400;
+    flex-shrink: 0;
+  }
+  details[open] summary::after { content: "–"; }
+  details p {
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 15px;
+  }
+  details strong { color: var(--ink); }
+ 
+  .section-gap { margin-top: 40px; }
+ 
   .contact {
-    background: var(--dark); border-radius: 16px;
-    padding: 40px 32px; text-align: center; color: #fff; margin-top: 56px;
+    margin-top: 48px;
+    text-align: center;
+    padding: 28px 20px;
+    background: #f6f9f6;
+    border-radius: 14px;
   }
-  .contact h2 {
-    font-family: "Fraunces", Georgia, serif; font-weight: 600;
-    font-size: 24px; margin-bottom: 8px;
+  .contact h2 { margin-bottom: 6px; }
+  .contact p { color: var(--muted); margin: 0 0 20px; font-size: 15px; }
+  .contact a.button {
+    display: inline-block;
+    background: var(--green);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 12px 26px;
+    border-radius: 999px;
   }
-  .contact p { font-size: 15px; opacity: 0.8; margin-bottom: 22px; }
-  .contact a.btn {
-    display: inline-block; background: var(--accent); color: #fff;
-    padding: 13px 30px; border-radius: 10px; font-weight: 600; font-size: 15px;
+  .contact .email {
+    display: block;
+    margin-top: 14px;
+    font-size: 14px;
+    color: var(--muted);
   }
-  .contact a.btn:hover { background: #15803d; }
-  .contact .email { margin-top: 14px; font-size: 13px; opacity: 0.6; }
-  footer { text-align: center; padding: 26px; font-size: 13px; color: var(--muted); }
-  @media (max-width: 560px) {
-    .hero h2 { font-size: 29px; }
-    .container { padding: 40px 18px 64px; }
+  .contact .email a { color: var(--green); text-decoration: none; }
+ 
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 40px;
+  }
+ 
+  summary:focus-visible, a:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 3px;
   }
 </style>
 </head>
 <body>
+<div class="wrap">
  
-<header>
-  <div class="logo">N</div>
-  <h1>NutriScan <span>Food &amp; Nutrition</span></h1>
-</header>
+  <div class="brand">
+    <div class="mark">N</div>
+    <span>NutriScan</span>
+  </div>
  
-<div class="hero">
-  <h2>How can we help?</h2>
-  <p>Support for NutriScan — your AI-powered food scanner and nutrition tracker.</p>
-</div>
+  <h1>How can we help?</h1>
+  <p class="sub">Support for NutriScan — food logging, CGM tracking, and glucose-aware nutrition for people living with Type 1 diabetes.</p>
  
-<div class="container">
+  <div class="disclaimer">
+    <span class="icon">⚠️</span>
+    <span>NutriScan shows your own food and glucose history — it does not calculate insulin doses. Always confirm dosing and care decisions with your care team.</span>
+  </div>
  
-  <div class="cards">
-    <div class="card">
-      <div class="ico">📸</div>
-      <h3>AI Food Scanning</h3>
-      <p>Snap a photo of your meal and NutriScan's AI estimates its calories, protein, carbs, and fat in seconds.</p>
+  <h2>Diabetes &amp; CGM</h2>
+  <div class="faq">
+    <details>
+      <summary>How do I connect my CGM (Dexcom / Libre)?</summary>
+      <p>In <strong>Profile → Diabetes</strong>, set your <strong>CGM / Glucose Source</strong> to <strong>Apple Health</strong>. Once your Dexcom or Libre app is syncing to Apple Health, your glucose readings flow into NutriScan automatically.</p>
+    </details>
+    <details>
+      <summary>How do I set my target glucose range?</summary>
+      <p>Open <strong>Profile → Diabetes</strong> and enter your <strong>Low</strong> and <strong>High</strong> targets in mg/dL or mmol/L. Many adults use roughly 70–180 mg/dL, but always use the range your care team has set for you.</p>
+    </details>
+    <details>
+      <summary>What is the Food Playbook?</summary>
+      <p>Your Food Playbook builds from your own history — log a meal, then a glucose reading before and 1–2 hours after (or let your connected CGM fill it in automatically). Over time it shows how specific foods tend to affect <em>your</em> glucose. It's your history, not a prediction, and never an insulin dose.</p>
+    </details>
+    <details>
+      <summary>How do I log or rotate injection/sensor sites?</summary>
+      <p>Open <strong>Dashboard → Sites &amp; Sensors</strong> to log a new sensor or injection site. NutriScan suggests your next site so you can rotate consistently, and tracks how long your current sensor has been in place.</p>
+    </details>
+    <details>
+      <summary>Can I log insulin?</summary>
+      <p>Insulin logging is available with <strong>NutriScan Pro</strong>, alongside carb counting, glucose &amp; time-in-range charts, and post-meal pattern tracking. NutriScan never suggests a dose — it only helps you keep a record.</p>
+    </details>
+    <details>
+      <summary>Why did I get a post-meal glucose reminder?</summary>
+      <p>If enabled in <strong>Profile → Reminders</strong>, NutriScan nudges you about 2 hours after a logged meal to check your glucose, so your Food Playbook keeps building. You can turn this off any time in Reminders.</p>
+    </details>
+  </div>
+ 
+  <div class="section-gap">
+    <h2>Scanning &amp; Logging</h2>
+    <div class="faq">
+      <details>
+        <summary>How do I scan a meal?</summary>
+        <p>Open the <strong>Scan</strong> tab and choose <strong>Camera</strong>. Tap <strong>Take Photo</strong> (or <strong>File Upload</strong> for an existing photo), then tap <strong>Run Deep AI Scanning</strong> for a full nutrition and carb breakdown.</p>
+      </details>
+      <details>
+        <summary>Can I log food without taking a photo?</summary>
+        <p>Yes. On the <strong>Scan</strong> tab, use <strong>Presets</strong> for common meals, or <strong>Text Input</strong> to describe what you ate — the AI estimates carbs and nutrition either way.</p>
+      </details>
+      <details>
+        <summary>How do I track my daily nutrition?</summary>
+        <p>Your logged meals and daily totals — including carbs — appear on the <strong>Dashboard</strong> tab, measured against the goals in your profile.</p>
+      </details>
     </div>
-    <div class="card">
-      <div class="ico">⚡</div>
-      <h3>Quick Logging</h3>
-      <p>Log instantly from built-in food presets, or just describe your meal in words and let the AI do the rest.</p>
-    </div>
-    <div class="card">
-      <div class="ico">🥗</div>
-      <h3>Nutrition Tracking</h3>
-      <p>Your Dashboard tracks daily calories and macros against the goals you set in your profile.</p>
-    </div>
-    <div class="card">
-      <div class="ico">🤝</div>
-      <h3>Care Center</h3>
-      <p>Find nearby food banks, free meals, SNAP/EBT stores, WIC offices, and farmers markets near you.</p>
-    </div>
   </div>
  
-  <h2 class="sec-title">Frequently Asked Questions</h2>
- 
-  <div class="faq-item">
-    <h4>How do I scan a meal?</h4>
-    <p>Open the <strong>Scan</strong> tab at the bottom of the app and choose <strong>Camera</strong>. Tap <strong>Take Photo</strong> to use your camera (or <strong>File Upload</strong> to pick an existing photo), then tap <strong>Run Deep AI Scanning</strong> to get the nutrition breakdown.</p>
-  </div>
-  <div class="faq-item">
-    <h4>Can I log food without taking a photo?</h4>
-    <p>Yes. On the <strong>Scan</strong> tab, use <strong>Presets</strong> to quickly add common meals, or <strong>Text Input</strong> to describe what you ate in your own words — the AI will estimate the nutrition for you.</p>
-  </div>
-  <div class="faq-item">
-    <h4>How do I track my daily nutrition?</h4>
-    <p>Your logged meals and daily totals (calories, protein, carbs, and fat) appear on the <strong>Dashboard</strong> tab, measured against the goals in your profile.</p>
-  </div>
-  <div class="faq-item">
-    <h4>How do I find food assistance near me?</h4>
-    <p>Open the <strong>Care</strong> tab, then either tap <strong>Use my location</strong> or enter your ZIP code. You'll see nearby food banks, free meals, SNAP/EBT stores, WIC offices, and farmers markets, and can tap any to open it in Maps.</p>
-  </div>
-  <div class="faq-item">
-    <h4>Is NutriScan free?</h4>
-    <p>Yes — NutriScan is free to download and use. An optional <strong>Pro</strong> subscription unlocks premium features; you can see what's included and the current pricing on the <strong>Pro</strong> tab in the app. You're never charged unless you choose to upgrade.</p>
-  </div>
-  <div class="faq-item">
-    <h4>How do I change my goals or profile?</h4>
-    <p>Open the <strong>Profile</strong> tab to update your name, dietary goal, and preferences, or to switch between light and dark mode.</p>
-  </div>
-  <div class="faq-item">
-    <h4>I forgot my password.</h4>
-    <p>On the sign-in screen, tap <strong>Forgot password?</strong>, enter your email, and we'll send a 6-digit reset code. Enter the code and a new password to get back in. (If you don't see the email, check your spam folder.)</p>
-  </div>
-  <div class="faq-item">
-    <h4>How do I delete my account?</h4>
-    <p>Open the <strong>Profile</strong> tab and use the account-deletion option. This permanently removes your account and associated data.</p>
-  </div>
-  <div class="faq-item">
-    <h4>The app crashed or isn't working — what should I do?</h4>
-    <p>Try fully closing and reopening the app, and make sure your iOS is up to date. If the problem continues, email us at the address below and we'll help you sort it out.</p>
+  <div class="section-gap">
+    <h2>Account &amp; Access</h2>
+    <div class="faq">
+      <details>
+        <summary>How do I find food assistance near me?</summary>
+        <p>Open the <strong>Care</strong> tab, then tap <strong>Use my location</strong> or enter your ZIP code to see nearby food banks, free meals, SNAP/EBT stores, WIC offices, and farmers markets.</p>
+      </details>
+      <details>
+        <summary>Is NutriScan free?</summary>
+        <p>Yes — NutriScan is free to download and use. An optional <strong>Pro</strong> subscription adds features like insulin logging and glucose trend charts; you're never charged unless you choose to upgrade.</p>
+      </details>
+      <details>
+        <summary>I forgot my password.</summary>
+        <p>On the sign-in screen, tap <strong>Forgot password?</strong>, enter your email, and we'll send a 6-digit reset code. Check your spam folder if it doesn't arrive.</p>
+      </details>
+      <details>
+        <summary>How do I delete my account?</summary>
+        <p>Open the <strong>Profile</strong> tab and use the account-deletion option. This permanently removes your account, glucose history, and logged data.</p>
+      </details>
+      <details>
+        <summary>The app crashed or isn't working — what should I do?</summary>
+        <p>Try fully closing and reopening the app, and make sure your iOS is up to date. If the problem continues, email us below and we'll help you sort it out.</p>
+      </details>
+    </div>
   </div>
  
   <div class="contact">
     <h2>Still need help?</h2>
     <p>We're happy to help with any question or issue.</p>
-    <a class="btn" href="mailto:support@getnutriscan.com">Email Support</a>
-    <div class="email">support@getnutriscan.com</div>
+    <a class="button" href="mailto:support@getnutriscan.com">Email Support</a>
+    <span class="email"><a href="mailto:support@getnutriscan.com">support@getnutriscan.com</a></span>
   </div>
  
+  <footer>© 2026 NutriScan · Built at Purdue University</footer>
+ 
 </div>
- 
-<footer>© 2026 NutriScan · Built at Purdue University</footer>
- 
 </body>
 </html>
