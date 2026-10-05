@@ -1,1 +1,2 @@
 google.com, pub-2244884161565407, DIRECT, f08c47fec0942fa0
+smaato.com, 1100059345, RESELLER, 07bcf65f187117b4
