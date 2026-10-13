@@ -47,6 +47,17 @@ async function github(path, options = {}) {
   return response;
 }
 
+if (process.env.GITHUB_EVENT_NAME === 'issue_comment') {
+  const actor = event.comment?.user?.login;
+  if (!actor) throw new Error('Missing commenter identity.');
+  const permissionResponse = await github(`/collaborators/${encodeURIComponent(actor)}/permission`);
+  const { permission } = await permissionResponse.json();
+  if (!['admin', 'write'].includes(permission)) {
+    console.log('Commenter does not have write access; review skipped.');
+    process.exit(0);
+  }
+}
+
 const prResponse = await github(`/pulls/${prNumber}`);
 const pr = await prResponse.json();
 if (pr.state !== 'open') throw new Error(`PR #${prNumber} is not open; review skipped.`);

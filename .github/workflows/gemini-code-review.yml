@@ -22,8 +22,7 @@ jobs:
   review:
     if: >-
       (github.event_name == 'pull_request_target' &&
-       (github.event.pull_request.head.repo.full_name == github.repository ||
-        contains(fromJSON('["OWNER","MEMBER"]'), github.event.pull_request.author_association))) ||
+       github.event.pull_request.head.repo.full_name == github.repository) ||
       (github.event_name == 'issue_comment' && github.event.issue.pull_request &&
        startsWith(github.event.comment.body, '/gemini review') &&
        contains(fromJSON('["OWNER","MEMBER"]'), github.event.comment.author_association)) ||
