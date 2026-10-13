@@ -105,7 +105,12 @@ for (let attempt = 0; attempt < 3; attempt += 1) {
   if (![429, 500, 502, 503, 504].includes(geminiResponse.status) || attempt === 2) {
     throw new Error(`Gemini API returned HTTP ${geminiResponse.status} after ${attempt + 1} attempt(s); response body omitted.`);
   }
-  await new Promise((resolve) => setTimeout(resolve, 2_000 * (2 ** attempt)));
+  const retryAfterSeconds = Number(geminiResponse.headers.get('retry-after'));
+  const backoffMs = geminiResponse.status === 429
+    ? (Number.isFinite(retryAfterSeconds) && retryAfterSeconds > 0 ? retryAfterSeconds * 1_000 : 60_000)
+    : 2_000 * (2 ** attempt);
+  const jitterMs = Math.floor(Math.random() * 2_000);
+  await new Promise((resolve) => setTimeout(resolve, backoffMs + jitterMs));
 }
 const result = await geminiResponse.json();
 const candidate = result.candidates?.[0];
