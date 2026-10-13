@@ -62,10 +62,10 @@ if (diff.length > maxDiffChars) {
 }
 
 const potentialSecret = /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----|\bAKIA[0-9A-Z]{16}\b|\bAIza[0-9A-Za-z_-]{35}\b|\bgithub_pat_[A-Za-z0-9_]{20,}\b|\bgh[pousr]_[A-Za-z0-9]{20,}\b|\bxox[baprs]-[A-Za-z0-9-]{20,}\b/;
-if (potentialSecret.test(diff)) {
-  const body = '<!-- gemini-pr-review -->\n## Gemini PR review skipped\nA credential-like value was detected in the diff, so it was not sent to Gemini. Remove it and rotate it if it is real, then rerun the review.';
+if (potentialSecret.test([pr.title, pr.body || '', diff].join('\n'))) {
+  const body = '<!-- gemini-pr-review -->\n## Gemini PR review skipped\nA credential-like value was detected in the PR content, so it was not sent to Gemini. Remove it and rotate it if it is real, then rerun the review.';
   await postOrUpdateComment(prNumber, body);
-  throw new Error('Potential credential detected; diff was not sent to Gemini.');
+  throw new Error('Potential credential detected; PR content was not sent to Gemini.');
 }
 
 const domainGuidance = {
@@ -110,7 +110,7 @@ for (let attempt = 0; attempt < 3; attempt += 1) {
     ? (Number.isFinite(retryAfterSeconds) && retryAfterSeconds > 0 ? retryAfterSeconds * 1_000 : 60_000)
     : 2_000 * (2 ** attempt);
   const jitterMs = Math.floor(Math.random() * 2_000);
-  await new Promise((resolve) => setTimeout(resolve, backoffMs + jitterMs));
+  await new Promise((resolve) => setTimeout(resolve, Math.min(backoffMs, 60_000) + jitterMs));
 }
 const result = await geminiResponse.json();
 const candidate = result.candidates?.[0];
@@ -123,16 +123,27 @@ const reviewText = (candidate.content?.parts || [])
   .trim();
 if (!reviewText) throw new Error('Gemini returned no review text.');
 
+const latestPr = await (await github(`/pulls/${prNumber}`)).json();
+if (latestPr.head.sha !== pr.head.sha) {
+  console.log(`PR #${prNumber} changed during review; skipping stale advisory comment.`);
+  process.exit(0);
+}
+
 const body = `<!-- gemini-pr-review -->\n## Gemini PR review (advisory)\n\n${reviewText}\n\n---\nModel: \`${model}\`. This AI review is advisory only; it does not approve the PR or replace required CI and independent human review.`;
 await postOrUpdateComment(prNumber, body);
 console.log(`Posted Gemini review comment on ${repo}#${prNumber}.`);
 
 async function postOrUpdateComment(number, body) {
-  const commentsResponse = await github(`/issues/${number}/comments?per_page=100`);
-  const comments = await commentsResponse.json();
-  const prior = comments.find((comment) =>
-    ['github-actions[bot]', 'nutriscan-ai'].includes(comment.user?.login) &&
-    comment.body?.startsWith('<!-- gemini-pr-review -->'));
+  let prior;
+  for (let page = 1; page <= 20; page += 1) {
+    const response = await github(`/issues/${number}/comments?per_page=100&page=${page}`);
+    const comments = await response.json();
+    prior = comments.find((comment) =>
+      ['github-actions[bot]', 'nutriscan-ai'].includes(comment.user?.login) &&
+      comment.body?.startsWith('<!-- gemini-pr-review -->'));
+    if (prior || comments.length < 100) break;
+    if (page === 20) throw new Error('Too many PR comments to locate the existing Gemini review safely.');
+  }
   const path = prior ? `/issues/comments/${prior.id}` : `/issues/${number}/comments`;
   await github(path, {
     method: prior ? 'PATCH' : 'POST',
